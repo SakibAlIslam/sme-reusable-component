@@ -1,0 +1,22 @@
+.inputField {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 8px 14px;
+    width: 100%;
+    /* width: 328px; */
+    height: 40px;
+    margin-right: 24px;
+  }
+  .inputField:hover {
+    border: 1px solid rgba(0, 0, 0, 0.6);
+  }
+  .inputField:focus {
+    outline-color:  #4285F4;
+    border: 2px solid;
+  }
+label{
+    font-size: 14px;
+    display: block;
+    color: rgba(0, 0, 0, 0.7);
+}

@@ -1,10 +1,9 @@
-
 import './App.css';
 import AllComponents from './Components/AllComponents';
 
 function App() {
   return (
-    <div className="App">
+    <div >
       <header className="App-header">
         <AllComponents />
       </header>

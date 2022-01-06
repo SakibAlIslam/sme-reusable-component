@@ -11,6 +11,8 @@ import TableRow from "@mui/material/TableRow";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Input from "./Input";
+import Skeleton from "@mui/material/Skeleton";
+import axios from "axios";
 
 // Wrapper
 const Wrapper = styled.div`
@@ -54,12 +56,23 @@ console.log(tableCell);
 
 export default function AllComponents() {
   const [rows, setRows] = useState([]);
-  console.log('rows: ', rows);
+  const [loading, setLoading] = useState(false);
+  console.log("rows: ", rows);
+
+  const getItemOffers = async (setLoading, setter) => {
+    setLoading(true);
+    try {
+      const res = await axios.get(`https://jsonplaceholder.typicode.com/todos`);
+      setter(res?.data);
+      setLoading(false);
+    } catch (error) {
+      setter("");
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
-      .then((json) => setRows(json));
+    getItemOffers(setLoading, setRows);
   }, []);
 
   const headers = [
@@ -123,12 +136,28 @@ export default function AllComponents() {
               <TableHead>
                 <TableRow>
                   {headers.map((th, index) => (
-                    <TableCell align="right" style={th?.style} key={index}>
+                    <TableCell align="left" style={th?.style} key={index}>
                       {th?.headerName}
                     </TableCell>
                   ))}
                 </TableRow>
               </TableHead>
+              {loading && (
+                <>
+                  <TableCell>
+                    <Skeleton animation="wave" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton animation="wave" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton animation="wave" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton animation="wave" />
+                  </TableCell>
+                </>
+              )}
               <TableBody>
                 {rows.map((row) => (
                   <TableRow
@@ -136,18 +165,17 @@ export default function AllComponents() {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row" sx={tableCell}>
-                      {row.po}
+                      {row.id}
                     </TableCell>
                     <TableCell align="left" sx={tableCell}>
-                      {row.name}
+                      {row.title}
                     </TableCell>
                     <TableCell align="left" sx={tableCell}>
-                      {row.orderQty}
+                      {row.userId}
                     </TableCell>
                     <TableCell align="left" sx={tableCell}>
-                      {row.receiveQty}
+                      {row.completed}
                     </TableCell>
-                    
                   </TableRow>
                 ))}
               </TableBody>

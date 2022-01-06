@@ -6,7 +6,7 @@
     width: 100%;
     /* width: 328px; */
     height: 40px;
-    margin-right: 24px;
+    font-size: 14px;
   }
   .inputField:hover {
     border: 1px solid rgba(0, 0, 0, 0.6);

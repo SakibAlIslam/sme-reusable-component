@@ -210,23 +210,32 @@ const rows = [
 export default function AllComponents() {
   return (
     <div>
-        <h1 style={{color:"black"}}>All Components</h1>
-        {/* text field */}
-        <>
-        <Input label={'Enter a Input'} />
-        </>
+      <h1 style={{ color: "black" }}>All Components</h1>
+      {/* text field */}
+      <>
+        <h5>Input field</h5>
+        <Input label={"Enter a Input"} placeholder={"Enter a Value"} />
+      </>
       {/* table */}
       <>
+      <h5 className="mt-5">Table</h5>
         <Wrapper>
           <TableHeader>
             <TableName>
               <NameHeading>ItemList</NameHeading>
             </TableName>
-            <Input placeholderTxt="Enter a challan no" />
-            <Input placeholderTxt="Enter a challan no" />
-            <Input placeholderTxt="Enter a challan no" />
-            {/* Checkbox */}
-            <FormGroup>
+            <div className="row">
+              <div className="col-lg-3">
+                <Input placeholder="Enter a challan no" />
+              </div>
+              <div className="col-lg-3">
+                <Input placeholder="Enter a challan no" />
+              </div>
+              <div className="col-lg-3">
+                <Input placeholder="Enter a challan no" />
+              </div>
+              {/* Checkbox */}
+            <FormGroup className="col-lg-3">
               <FormControlLabel
                 sx={{
                   "& .MuiTypography-root": { fontSize: 14, letterSpacing: 0.2 },
@@ -235,6 +244,7 @@ export default function AllComponents() {
                 label="Recive All"
               />
             </FormGroup>
+            </div>
           </TableHeader>
           <TableContainer sx={{ maxHeight: 530 }} component={Paper}>
             <Table

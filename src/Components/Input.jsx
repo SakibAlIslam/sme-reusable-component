@@ -1,10 +1,10 @@
 import React from 'react';
 import Style from './Input.module.css';
 
-const Input = ({ label, placeholderTxt }) => (
+const Input = ({ label, placeholder }) => (
     <>
         {label ? <label>{label}</label> : ''}
-        <input className={Style.inputField} placeholder={placeholderTxt} />
+        <input className={Style.inputField} placeholder={placeholder} />
     </>
 );
 

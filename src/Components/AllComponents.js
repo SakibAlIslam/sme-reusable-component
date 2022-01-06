@@ -8,7 +8,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Input from "./Input";
 
@@ -44,170 +44,35 @@ const tableCell = [
     paddingTop: 0,
     paddingBottom: 0,
     lineHeight: 0,
-    paddingLeft: "23px"
+    paddingLeft: "23px",
   },
 ];
 console.log(tableCell);
-function createData(po, name, orderQty, receiveQty, warehouse, remainingQty) {
-  return { po, name, orderQty, receiveQty, warehouse, remainingQty };
-}
-
-const rows = [
-  createData(
-    "POEM987",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM988",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM989",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM980",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM986",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-  createData(
-    "POEM985",
-    "Horlicks Health And Nutrition",
-    357357,
-    357357,
-    357357,
-    34563
-  ),
-];
+// function createData(po, name, orderQty, receiveQty, warehouse, remainingQty) {
+//   return { po, name, orderQty, receiveQty, warehouse, remainingQty };
+// }
 
 export default function AllComponents() {
+  const [rows, setRows] = useState([]);
+  console.log('rows: ', rows);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((response) => response.json())
+      .then((json) => setRows(json));
+  }, []);
+
+  const headers = [
+    {
+      headerName: "Id",
+      fieldName: "sl",
+      style: { width: "100px", marginLeft: "0px" },
+    },
+    { headerName: "Title", fieldName: "title" },
+    { headerName: "User Id", fieldName: "userId" },
+    { headerName: "Completed", fieldName: "completed" },
+  ];
+
   return (
     <div>
       <h1 style={{ color: "black" }}>All Components</h1>
@@ -218,7 +83,7 @@ export default function AllComponents() {
       </>
       {/* table */}
       <>
-      <h5 className="mt-5">Table</h5>
+        <h5 className="mt-5">Table</h5>
         <Wrapper>
           <TableHeader>
             <TableName>
@@ -235,15 +100,18 @@ export default function AllComponents() {
                 <Input placeholder="Enter a challan no" />
               </div>
               {/* Checkbox */}
-            <FormGroup className="col-lg-3">
-              <FormControlLabel
-                sx={{
-                  "& .MuiTypography-root": { fontSize: 14, letterSpacing: 0.2 },
-                }}
-                control={<Checkbox defaultChecked />}
-                label="Recive All"
-              />
-            </FormGroup>
+              <FormGroup className="col-lg-3">
+                <FormControlLabel
+                  sx={{
+                    "& .MuiTypography-root": {
+                      fontSize: 14,
+                      letterSpacing: 0.2,
+                    },
+                  }}
+                  control={<Checkbox defaultChecked />}
+                  label="Recive All"
+                />
+              </FormGroup>
             </div>
           </TableHeader>
           <TableContainer sx={{ maxHeight: 530 }} component={Paper}>
@@ -254,71 +122,11 @@ export default function AllComponents() {
             >
               <TableHead>
                 <TableRow>
-                  <TableCell
-                    sx={{
-                      height: 55,
-                      padding: 0,
-                      paddingLeft: "23px",
-                      backgroundColor: "#F5F5F5",
-                    }}
-                  >
-                    PO NO.
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      height: 55,
-                      padding: 0,
-                      paddingLeft: "23px",
-                      backgroundColor: "#F5F5F5",
-                    }}
-                    align="left"
-                  >
-                    Name
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      height: 55,
-                      padding: 0,
-                      paddingLeft: "23px",
-                      backgroundColor: "#F5F5F5",
-                    }}
-                    align="left"
-                  >
-                    Order QTY
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      height: 55,
-                      padding: 0,
-                      paddingLeft: "23px",
-                      backgroundColor: "#F5F5F5",
-                    }}
-                    align="left"
-                  >
-                    Receive QTY
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      height: 55,
-                      padding: 0,
-                      paddingLeft: "23px",
-                      backgroundColor: "#F5F5F5",
-                    }}
-                    align="left"
-                  >
-                    Warehouse
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      height: 55,
-                      padding: 0,
-                      paddingLeft: "23px",
-                      backgroundColor: "#F5F5F5",
-                    }}
-                    align="left"
-                  >
-                    Remaining QTY
-                  </TableCell>
+                  {headers.map((th, index) => (
+                    <TableCell align="right" style={th?.style} key={index}>
+                      {th?.headerName}
+                    </TableCell>
+                  ))}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -339,12 +147,7 @@ export default function AllComponents() {
                     <TableCell align="left" sx={tableCell}>
                       {row.receiveQty}
                     </TableCell>
-                    <TableCell align="left" sx={tableCell}>
-                      {row.warehouse}
-                    </TableCell>
-                    <TableCell align="left" sx={tableCell}>
-                      {row.remainingQty}
-                    </TableCell>
+                    
                   </TableRow>
                 ))}
               </TableBody>

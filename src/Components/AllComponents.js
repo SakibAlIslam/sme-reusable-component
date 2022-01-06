@@ -44,7 +44,7 @@ const tableCell = [
     paddingTop: 0,
     paddingBottom: 0,
     lineHeight: 0,
-    paddingLeft: "23px",
+    paddingLeft: "23px"
   },
 ];
 console.log(tableCell);

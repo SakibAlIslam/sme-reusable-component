@@ -115,6 +115,7 @@ color: rgba(50, 50, 50, 0.7);
             >
               {headers.map((th, i)=>(
                 <>
+                {console.log('th:',th)}
                   {(th?.isEdit || th?.isDelete)?
                     <TableCell align="right" key={i}>
                       {th?.isDelete && 

@@ -17,7 +17,14 @@ export default function AllComponents() {
     setLoading(true);
     try {
       const res = await axios.get(`https://jsonplaceholder.typicode.com/todos`);
-      setter(res?.data);
+      const data = res?.data?.map(item => ({
+        ...item,
+        sl: item?.id,
+        title: item?.title,
+        userId: item?.userId,
+        completed: item?.completed ? "true" : "false"
+      }))
+      setter(data);
       setLoading(false);
     } catch (error) {
       setter("");

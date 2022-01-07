@@ -15,7 +15,7 @@ import Input from "./Input";
 import styled from "styled-components";
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function ITable({headers, rows, pageSize, loading, customerHeader}) {
+export default function ITable({headers, rowData, pageSize, loading, customerHeader}) {
 
     const [loop, setLoop] = useState([]);
 
@@ -25,7 +25,6 @@ export default function ITable({headers, rows, pageSize, loading, customerHeader
 
       // Wrapper
 const Wrapper = styled.div`
-max-width: 1110px;
 margin: 0 auto;
 border: 1px solid rgba(0, 0, 0, 0.08);
 box-sizing: border-box;
@@ -79,7 +78,7 @@ color: rgba(50, 50, 50, 0.7);
               </FormGroup>
             </div>
           </TableHeader> : null}
-          <TableContainer sx={{ maxHeight: 530 }} component={Paper}>
+          <TableContainer component={Paper}>
             <Table
               stickyHeader
               sx={{ minWidth: 650 }}
@@ -108,7 +107,7 @@ color: rgba(50, 50, 50, 0.7);
                 </>
               )}
               <TableBody>
-          {rows.map((row, index) => (
+          {rowData?.map((row, index) => (
             <TableRow
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

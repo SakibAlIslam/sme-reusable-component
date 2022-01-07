@@ -56,6 +56,8 @@ console.log(tableCell);
 
 export default function AllComponents() {
   const [rows, setRows] = useState([]);
+  const [loop, setLoop] = useState([]);
+  const [pageSize, setPageSize] = useState(15);
   const [loading, setLoading] = useState(false);
   console.log("rows: ", rows);
 
@@ -72,6 +74,7 @@ export default function AllComponents() {
   };
 
   useEffect(() => {
+    setLoop([pageSize])
     getItemOffers(setLoading, setRows);
   }, []);
 
@@ -144,18 +147,15 @@ export default function AllComponents() {
               </TableHead>
               {loading && (
                 <>
-                  <TableCell>
+                {loop?.map((th, index) =>(
+                  <TableRow>
+                  {headers?.map((th, index) => (
+                    <TableCell>
                     <Skeleton animation="wave" />
                   </TableCell>
-                  <TableCell>
-                    <Skeleton animation="wave" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton animation="wave" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton animation="wave" />
-                  </TableCell>
+                  ))}
+                </TableRow>       
+                ))}
                 </>
               )}
               <TableBody>

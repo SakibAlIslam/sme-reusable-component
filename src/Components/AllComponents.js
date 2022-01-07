@@ -54,6 +54,7 @@ export default function AllComponents() {
       <>
         <h5 className="mt-5">Table</h5>
         <ITable headers = {headers} rows={rows} pageSize={pageSize} loading={loading}/>
+        
       </>
     </div>
   );

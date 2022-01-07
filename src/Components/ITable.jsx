@@ -30,7 +30,6 @@ border: 1px solid rgba(0, 0, 0, 0.08);
 box-sizing: border-box;
 box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.16);
 border-radius: 4px;
-/*  */
 margin-top: 30px;
 `;
 const TableHeader = styled.div`

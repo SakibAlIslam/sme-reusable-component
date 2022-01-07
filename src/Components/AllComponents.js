@@ -22,7 +22,8 @@ export default function AllComponents() {
         sl: item?.id,
         title: item?.title,
         userId: item?.userId,
-        completed: item?.completed ? "true" : "false"
+        completed: item?.completed ? "true" : "false",
+        quantity: <Input />
       }))
       setter(data);
       setLoading(false);
@@ -45,6 +46,7 @@ export default function AllComponents() {
     { headerName: "Title", fieldName: "title" },
     { headerName: "User Id", fieldName: "userId" },
     { headerName: "Completed", fieldName: "completed" },
+    { headerName: "Quantity", fieldName: "quantity" },
   ];
 
   return (

@@ -9,10 +9,9 @@ import ITable from "./ITable";
 
 export default function AllComponents() {
   const [rows, setRows] = useState([]);
-  const [loop, setLoop] = useState([]);
   const [pageSize, ] = useState(15);
   const [loading, setLoading] = useState(false);
-  console.log("loop: ", loop);
+
 
   const getItemOffers = async (setLoading, setter) => {
     setLoading(true);
@@ -27,9 +26,8 @@ export default function AllComponents() {
   };
 
   useEffect(() => {
-    setLoop(Array.apply(null, Array(pageSize)))
     getItemOffers(setLoading, setRows);
-  }, [pageSize]);
+  }, []);
 
   const headers = [
     {
@@ -54,7 +52,7 @@ export default function AllComponents() {
       <>
         <h5 className="mt-5">Table</h5>
         <ITable headers = {headers} rows={rows} pageSize={pageSize} loading={loading}/>
-        
+
       </>
     </div>
   );

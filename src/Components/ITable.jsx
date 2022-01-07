@@ -13,6 +13,7 @@ import TableRow from "@mui/material/TableRow";
 import React, { useEffect, useState } from "react";
 import Input from "./Input";
 import styled from "styled-components";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ITable({headers, rows, pageSize, loading, customerHeader}) {
 
@@ -46,16 +47,6 @@ font-size: 18px;
 line-height: 21px;
 color: rgba(50, 50, 50, 0.7);
 `;
-
-const tableCell = [
-{
-  height: 52,
-  paddingTop: 0,
-  paddingBottom: 0,
-  lineHeight: 0,
-  paddingLeft: "23px",
-},
-];
 
     return (
         <Wrapper>
@@ -117,26 +108,28 @@ const tableCell = [
                 </>
               )}
               <TableBody>
-                {rows?.map((row) => (
-                  <TableRow
-                    key={row.po}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row" sx={tableCell}>
-                      {row.id}
-                    </TableCell>
-                    <TableCell align="left" sx={tableCell}>
-                      {row.title}
-                    </TableCell>
-                    <TableCell align="left" sx={tableCell}>
-                      {row.userId}
-                    </TableCell>
-                    <TableCell align="left" sx={tableCell}>
-                      {row.completed ? "Completed" : 'Rejected'}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
+          {rows.map((row, index) => (
+            <TableRow
+              key={index}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              {headers.map((th, i)=>(
+                <>
+                  {(th?.isEdit || th?.isDelete)?
+                    <TableCell align="right" key={i}>
+                      {th?.isDelete && 
+                        <span onClick={()=>th?.editACtion(row[th?.fieldName])}>
+                          <DeleteIcon />
+                        </span>
+                      }
+                    </TableCell>:
+                    <TableCell key={i}>{row[th?.fieldName]}</TableCell>
+                  }
+                </>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
             </Table>
           </TableContainer>
         </Wrapper>

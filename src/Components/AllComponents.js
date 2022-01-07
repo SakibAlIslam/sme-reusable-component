@@ -174,7 +174,7 @@ export default function AllComponents() {
                       {row.userId}
                     </TableCell>
                     <TableCell align="left" sx={tableCell}>
-                      {row.completed}
+                      {row.completed ? "Completed" : 'Rejected'}
                     </TableCell>
                   </TableRow>
                 ))}

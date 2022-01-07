@@ -23,7 +23,9 @@ export default function AllComponents() {
         title: item?.title,
         userId: item?.userId,
         completed: item?.completed ? "true" : "false",
-        quantity: <Input />
+        quantity: <Input onChange={(e)=>{
+          console.log(e)
+        }}/>
       }))
       setter(data);
       setLoading(false);

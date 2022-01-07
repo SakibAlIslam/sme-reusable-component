@@ -57,9 +57,9 @@ console.log(tableCell);
 export default function AllComponents() {
   const [rows, setRows] = useState([]);
   const [loop, setLoop] = useState([]);
-  const [pageSize, setPageSize] = useState(15);
+  const [pageSize, ] = useState(15);
   const [loading, setLoading] = useState(false);
-  console.log("rows: ", rows);
+  console.log("loop: ", loop);
 
   const getItemOffers = async (setLoading, setter) => {
     setLoading(true);
@@ -74,9 +74,9 @@ export default function AllComponents() {
   };
 
   useEffect(() => {
-    setLoop([pageSize])
+    setLoop(Array.apply(null, Array(pageSize)))
     getItemOffers(setLoading, setRows);
-  }, []);
+  }, [pageSize]);
 
   const headers = [
     {
